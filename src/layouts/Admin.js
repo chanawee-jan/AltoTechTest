@@ -16,7 +16,6 @@ var ps;
 const AdminLayout = (props) => {
   const history = useHistory();
   const mainPanel = useRef();
-  const [barData, setBarData] = useState({});
 
   useEffect(() => {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -59,12 +58,6 @@ const AdminLayout = (props) => {
               return snapshot.val()[key];
             }) !== undefined
           ) {
-            console.log(barData);
-            setBarData(
-              Object.keys(snapshot.val()).map(function (key) {
-                return snapshot.val()[key];
-              })
-            );
             props.addbar(
               Object.keys(snapshot.val()).map(function (key) {
                 return snapshot.val()[key];

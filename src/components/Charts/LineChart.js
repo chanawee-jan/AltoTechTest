@@ -40,7 +40,7 @@ export const LineChart = () => {
     if (store.getState().todos.byIds[1] !== undefined) {
       setData(store.getState().todos.byIds[1].content);
     }
-  });
+  },[]);
 
   if (!data) {
     return <p>กำลังโหลด...</p>;

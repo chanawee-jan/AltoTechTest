@@ -19,23 +19,23 @@ const Dashboard = () => {
   useEffect(() => {
     if (store.getState().todos.byIds[1] !== undefined) {
       const listOfLine = store.getState().todos.byIds[1].content;
-      var total = 0;
-      for (var i = 0; i < listOfLine.length; i++) {
-        total += listOfLine[i];
+      var totalline = 0;
+      for (var iline = 0; iline < listOfLine.length; iline++) {
+        totalline += listOfLine[iline];
       }
-      var avg = total / listOfLine.length;
-      setLineMean(avg.toFixed(2))
+      var avgline = totalline / listOfLine.length;
+      setLineMean(avgline.toFixed(2))
     }
     if (store.getState().todos.byIds[2] !== undefined) {
       const listOfLine = store.getState().todos.byIds[2].content;
-      var total = 0;
-      for (var i = 0; i < listOfLine.length; i++) {
-        total += listOfLine[i];
+      var totalbar = 0;
+      for (var ibar = 0; ibar < listOfLine.length; ibar++) {
+        totalbar += listOfLine[ibar];
       }
-      var avg = total / listOfLine.length;
-      setBarMean(avg.toFixed(2))
+      var avgbar = totalbar / listOfLine.length;
+      setBarMean(avgbar.toFixed(2))
     }
-  });
+  },[]);
   return (
     <>
       <div className="content">

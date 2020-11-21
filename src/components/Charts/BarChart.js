@@ -40,7 +40,7 @@ export const BarChart = () => {
     if (store.getState().todos.byIds[2] !== undefined) {
       setData(store.getState().todos.byIds[2].content);
     }
-  });
+  },[]);
 
   if (!data) {
     return <p>กำลังโหลด...</p>;
