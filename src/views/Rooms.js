@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
-import { store } from "redux/store";
-import Room from "components/Room/Room";
+import { store } from "../redux/store";
+import Room from "../components/Room/Room";
 
 const Rooms = () => {
   const [roomInfo, setRoomInfo] = useState();

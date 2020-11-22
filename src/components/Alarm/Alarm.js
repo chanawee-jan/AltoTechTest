@@ -3,12 +3,10 @@ import React, { useState, useEffect, useRef } from "react";
 const useInterval = (callback, delay) => {
   const savedCallback = useRef();
 
-  // Remember the latest function.
   useEffect(() => {
     savedCallback.current = callback;
   }, [callback]);
 
-  // Set up the interval.
   useEffect(() => {
     function tick() {
       savedCallback.current();
@@ -55,10 +53,10 @@ const Alarm = ({ sendSignal }) => {
 
   return (
     <div>
-      <h2 style={{textAlign:'center'}}>It is {currentTime}.</h2>
-      <h2 style={{textAlign:'center'}}>{alarmMessage}</h2>
-      <form style={{textAlign:'center'}} >
-        <input type="time" onChange={setAlarmTime}></input>
+      <h2 id="currentTime" style={{textAlign:'center'}}>It is {currentTime}.</h2>
+      <h2 id="alarmMessage" style={{textAlign:'center'}}>{alarmMessage}</h2>
+      <form id="timeForm" style={{textAlign:'center'}} >
+        <input id="timeInput" type="time" onChange={setAlarmTime}></input>
       </form>
     </div>
   );

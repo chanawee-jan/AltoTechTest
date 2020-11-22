@@ -8,10 +8,10 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import { store } from "redux/store";
+import { store } from "../redux/store";
 
-import { LineChart } from "components/Charts/LineChart";
-import { BarChart } from "components/Charts/BarChart";
+import LineChart from "../components/Charts/LineChart";
+import BarChart from "../components/Charts/BarChart";
 
 const Dashboard = () => {
   const [lineMean, setLineMean] = useState();

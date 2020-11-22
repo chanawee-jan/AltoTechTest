@@ -7,7 +7,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import Alarm from "components/Alarm/Alarm";
+import Alarm from "../components/Alarm/Alarm";
 
 const Schedule = () => {
   //const [visible, setVisible] = useState(false);

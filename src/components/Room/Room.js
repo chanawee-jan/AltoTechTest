@@ -90,7 +90,7 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-export default function Room({ roomNumber, guest, type }) {
+const Room = ({ roomNumber, guest, type }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -160,3 +160,5 @@ export default function Room({ roomNumber, guest, type }) {
     </Container>
   );
 }
+
+export default Room

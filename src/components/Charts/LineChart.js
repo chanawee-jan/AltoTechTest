@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
-import { store } from "redux/store";
+import { store } from "../../redux/store";
 
-export const LineChart = () => {
+const LineChart = () => {
   const [data, setData] = useState();
   const options = {
     chart: {
@@ -73,3 +73,5 @@ export const LineChart = () => {
     />
   );
 };
+
+export default LineChart

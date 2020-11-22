@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
-import { store } from "redux/store";
+import { store } from "../../redux/store";
 
-export const BarChart = () => {
+const BarChart = () => {
   const [data, setData] = useState();
   const options = {
     chart: {
@@ -74,3 +74,5 @@ export const BarChart = () => {
     />
   );
 };
+
+export default BarChart
