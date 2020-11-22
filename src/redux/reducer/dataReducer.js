@@ -1,6 +1,6 @@
 const initialState = {
   GraphData: undefined,
-  Room: undefined,
+  Room: undefined
 };
 
 export const dataReducer = (state = initialState, action) => {
