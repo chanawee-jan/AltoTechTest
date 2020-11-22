@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
-import store from "../../redux/store";
+import { store } from "redux/store";
 
 export const LineChart = () => {
   const [data, setData] = useState();
@@ -24,7 +24,7 @@ export const LineChart = () => {
         "17:00",
         "18:00",
         "19:00",
-        "20:00"
+        "20:00",
       ],
     },
   };
@@ -36,11 +36,29 @@ export const LineChart = () => {
     },
   ];
 
-  useEffect(() => {
-    if (store.getState().todos.byIds[1] !== undefined) {
-      setData(store.getState().todos.byIds[1].content);
+  useEffect(()=>{
+    if (store.getState().data.GraphData !== undefined && store.getState().data.GraphData !== null) {
+      setData(
+        Object.keys(store.getState().data.GraphData["LineData"]).map(function (
+          key
+        ) {
+          return store.getState().data.GraphData["LineData"][key];
+        })
+      );
     }
-  },[]);
+  },[])
+
+  store.subscribe(() => {
+    if (store.getState().data.GraphData["LineData"] !== undefined && store.getState().data.GraphData["LineData"] !== null) {
+      setData(
+        Object.keys(store.getState().data.GraphData["LineData"]).map(function (
+          key
+        ) {
+          return store.getState().data.GraphData["LineData"][key];
+        })
+      );
+    }
+  });
 
   if (!data) {
     return <p>กำลังโหลด...</p>;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
-import store from "../../redux/store";
+import { store } from "redux/store";
 
 export const BarChart = () => {
   const [data, setData] = useState();
@@ -24,7 +24,7 @@ export const BarChart = () => {
         "17:00",
         "18:00",
         "19:00",
-        "20:00"
+        "20:00",
       ],
     },
   };
@@ -36,11 +36,29 @@ export const BarChart = () => {
     },
   ];
 
-  useEffect(() => {
-    if (store.getState().todos.byIds[2] !== undefined) {
-      setData(store.getState().todos.byIds[2].content);
+  useEffect(()=>{
+    if (store.getState().data.GraphData !== undefined && store.getState().data.GraphData !== null) {
+      setData(
+        Object.keys(store.getState().data.GraphData["BarData"]).map(function (
+          key
+        ) {
+          return store.getState().data.GraphData["BarData"][key];
+        })
+      );
     }
-  },[]);
+  },[])
+
+  store.subscribe(() => {
+    if (store.getState().data.GraphData["BarData"] !== undefined && store.getState().data.GraphData["BarData"] !== null) {
+      setData(
+        Object.keys(store.getState().data.GraphData["BarData"]).map(function (
+          key
+        ) {
+          return store.getState().data.GraphData["BarData"][key];
+        })
+      );
+    }
+  });
 
   if (!data) {
     return <p>กำลังโหลด...</p>;

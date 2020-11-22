@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import PerfectScrollbar from "perfect-scrollbar";
 import { Route, Switch, useHistory } from "react-router-dom";
-import { connect } from "react-redux";
-import { addline, addbar } from "../redux/actions";
-import firebase from "firebase";
 
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import Footer from "components/Footer/Footer.js";
@@ -22,53 +19,6 @@ const AdminLayout = (props) => {
       ps = new PerfectScrollbar(this.mainPanel.current);
       document.body.classList.toggle("perfect-scrollbar-on");
     }
-
-    firebase
-      .database()
-      .ref("/GraphData/LineData")
-      .on(
-        "value",
-        (snapshot) => {
-          if (
-            Object.keys(snapshot.val()).map(function (key) {
-              return snapshot.val()[key];
-            }) !== undefined
-          ) {
-            props.addline(
-              Object.keys(snapshot.val()).map(function (key) {
-                return snapshot.val()[key];
-              })
-            );
-          }
-        },
-        function (errorObject) {
-          console.log("The read failed: " + errorObject.code);
-        }
-      );
-
-    firebase
-      .database()
-      .ref("/GraphData/BarData")
-      .on(
-        "value",
-        function (snapshot) {
-          console.log(snapshot);
-          if (
-            Object.keys(snapshot.val()).map(function (key) {
-              return snapshot.val()[key];
-            }) !== undefined
-          ) {
-            props.addbar(
-              Object.keys(snapshot.val()).map(function (key) {
-                return snapshot.val()[key];
-              })
-            );
-          }
-        },
-        function (errorObject) {
-          console.log("The read failed: " + errorObject.code);
-        }
-      );
 
     return () => {
       if (navigator.platform.indexOf("Win") > -1) {
@@ -114,4 +64,4 @@ const AdminLayout = (props) => {
   );
 };
 
-export default connect(null, { addline, addbar })(AdminLayout);
+export default AdminLayout;

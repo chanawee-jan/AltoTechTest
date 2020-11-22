@@ -8,7 +8,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import store from "../redux/store";
+import { store } from "redux/store";
 
 import { LineChart } from "components/Charts/LineChart";
 import { BarChart } from "components/Charts/BarChart";
@@ -16,26 +16,71 @@ import { BarChart } from "components/Charts/BarChart";
 const Dashboard = () => {
   const [lineMean, setLineMean] = useState();
   const [barMean, setBarMean] = useState();
+
   useEffect(() => {
-    if (store.getState().todos.byIds[1] !== undefined) {
-      const listOfLine = store.getState().todos.byIds[1].content;
+    if (
+      store.getState().data.GraphData !== undefined &&
+      store.getState().data.Room !== undefined
+    ) {
+      const linedata = store.getState().data.GraphData["LineData"];
+      const bardata = store.getState().data.GraphData["BarData"];
+
+      const listOfLine = Object.keys(linedata).map(function (key) {
+        return linedata[key];
+      });
       var totalline = 0;
       for (var iline = 0; iline < listOfLine.length; iline++) {
         totalline += listOfLine[iline];
       }
       var avgline = totalline / listOfLine.length;
-      setLineMean(avgline.toFixed(2))
-    }
-    if (store.getState().todos.byIds[2] !== undefined) {
-      const listOfLine = store.getState().todos.byIds[2].content;
+      console.log("setLine");
+      setLineMean(avgline.toFixed(2));
+
+      const listOfBar = Object.keys(bardata).map(function (key) {
+        return bardata[key];
+      });
       var totalbar = 0;
-      for (var ibar = 0; ibar < listOfLine.length; ibar++) {
-        totalbar += listOfLine[ibar];
+      for (var ibar = 0; ibar < listOfBar.length; ibar++) {
+        totalbar += listOfBar[ibar];
       }
-      var avgbar = totalbar / listOfLine.length;
-      setBarMean(avgbar.toFixed(2))
+      var avgbar = totalbar / listOfBar.length;
+      setBarMean(avgbar.toFixed(2));
     }
-  },[]);
+  }, []);
+
+  store.subscribe(() => {
+    if (lineMean === undefined && barMean === undefined) {
+      if (
+        store.getState().data.GraphData !== undefined &&
+        store.getState().data.Room !== undefined
+      ) {
+        const linedata = store.getState().data.GraphData["LineData"];
+        const bardata = store.getState().data.GraphData["BarData"];
+
+        const listOfLine = Object.keys(linedata).map(function (key) {
+          return linedata[key];
+        });
+        var totalline = 0;
+        for (var iline = 0; iline < listOfLine.length; iline++) {
+          totalline += listOfLine[iline];
+        }
+        var avgline = totalline / listOfLine.length;
+        console.log("setLine");
+        setLineMean(avgline.toFixed(2));
+
+        const listOfBar = Object.keys(bardata).map(function (key) {
+          return bardata[key];
+        });
+        var totalbar = 0;
+        for (var ibar = 0; ibar < listOfBar.length; ibar++) {
+          totalbar += listOfBar[ibar];
+        }
+        var avgbar = totalbar / listOfBar.length;
+        setBarMean(avgbar.toFixed(2));
+      }
+    }
+  });
+
   return (
     <>
       <div className="content">

@@ -55,9 +55,9 @@ const Alarm = ({ sendSignal }) => {
 
   return (
     <div>
-      <h2>It is {currentTime}.</h2>
-      <h2>{alarmMessage}</h2>
-      <form>
+      <h2 style={{textAlign:'center'}}>It is {currentTime}.</h2>
+      <h2 style={{textAlign:'center'}}>{alarmMessage}</h2>
+      <form style={{textAlign:'center'}} >
         <input type="time" onChange={setAlarmTime}></input>
       </form>
     </div>
